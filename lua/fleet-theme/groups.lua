@@ -157,7 +157,7 @@ function M.setup()
         -- ["@constant"]           = { }, -- Constants identifiers. These might not be semantically constant. E.g. uppercase variables in Python.
         ["@constant.builtin"]       = { link = "Type" }, -- Built-in constant values: `nil` in Lua.
         -- ["@constant.macro"]         = { }, -- Constants defined by macros: `NULL` in C.
-        ["@constructor"]        = { fg = palette.light_blue }, -- Constructor calls and definitions: `= {}` in Lua, and Java constructors.
+        ["@constructor"]        = { fg = palette.yellow }, -- Constructor calls and definitions: `= {}` in Lua, and Java constructors.
         -- ["@error"]              = { }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
         ["@exception"]          = { fg = palette.purple }, -- Exception related keywords: `try`, `except`, `finally` in Python.
         -- ["@field"]              = { }, -- Object and struct fields.
@@ -168,7 +168,7 @@ function M.setup()
         ["@function.macro"]          = { fg = palette.green }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
         -- ["@include"]            = { }, -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
         ["@keyword"]            = { fg = palette.cyan }, -- Keywords that don't fit into other categories.
-        ["@keyword.import"]     = { link = "@namespace" },
+        ["@keyword.import"]     = { fg = palette.green },
         -- ["@keyword.function"]    = { }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
         -- ["@keyword.operator"]    = { }, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
         -- ["@keyword.return"]      = { }, -- Keywords like `return` and `yield`.
@@ -177,7 +177,7 @@ function M.setup()
         -- ["@method.call"]        = { link = "@function.call" }, -- Function calls and definitions.
         ["@function.method"]             = { link = "@function" }, -- Method calls and definitions.
         ["@function.method.call"]        = { link = "@function.call" }, -- Function calls and definitions.
-        ["@namespace"]          = { fg = palette.green }, -- Identifiers referring to modules and namespaces.
+        ["@namespace"]          = { fg = palette.light_blue }, -- Identifiers referring to modules and namespaces.
         -- ["@none"]               = { }, -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
         -- ["@number"]             = { }, -- Numeric literals that don't fit into other categories.
         -- ["@operator"]           = { }, -- Binary or unary operators: `+`, and also `->` and `*` in C.
@@ -231,11 +231,11 @@ function M.setup()
         ["@lsp.type.interface"] = { link = "@type" },
         ["@lsp.type.macro"] = { link = "@macro" },
         ["@lsp.type.method"] = {},
-        ["@lsp.type.namespace"] = {},
+        ["@lsp.type.namespace"] = { link = "@namespace" },
         ["@lsp.mod.crateRoot"] = { link = "@type" },
         ["@lsp.type.parameter"] = { link = "@parameter" },
         ["@lsp.type.property"] = { link = "@property" },
-        ["@lsp.type.struct"] = { link = "@constructor" },
+        ["@lsp.type.struct"] = {},
         ["@lsp.type.type"] = { link = "@type" },
         ["@lsp.type.typeParameter"] = { link = "@type.definition" },
         ["@lsp.type.variable"] = { link = "@variable" },
