@@ -264,7 +264,7 @@ function M.setup()
 		CmpItemKind = { fg = palette.light_blue },
 		CmpItemMenu = { fg = palette.dark },
 		CmpItemAbbrMatch = { fg = palette.light, bold = true },
-		CmpItemAbbrMatchFuzzy = { fg = palette.light_blue, bold = true },
+		CmpItemAbbrMatchFuzzy = { fg = palette.light, bold = true },
 
 		-- kind support
 		CmpItemKindSnippet = { fg = palette.purple },
