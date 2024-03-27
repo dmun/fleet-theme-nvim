@@ -44,7 +44,7 @@ function M.setup()
         -- NormalFloat  = { }, -- Normal text in floating windows.
         -- NormalNC     = { }, -- normal text in non-current windows
         Pmenu        = { bg = palette.darker, fg = palette.light }, -- Popup menu: normal item.
-        PmenuSel     = { bg = palette.selection, fg = palette.light, bold = true }, -- Popup menu: selected item.
+        PmenuSel     = { bg = palette.selection, fg = "none", bold = true }, -- Popup menu: selected item.
         PmenuSbar    = { bg = palette.darker, fg = palette.light, bold = true }, -- Popup menu: scrollbar.
         PmenuThumb   = { bg = palette.light_gray, fg = palette.light, bold = true }, -- Popup menu: Thumb of the scrollbar.
         -- Question     = { }, -- |hit-enter| prompt and yes/no questions
@@ -260,11 +260,11 @@ function M.setup()
         IlluminatedWordWrite = { bg  = palette.darker },
 
         CmpItemAbbr = { fg = palette.dark },
-		CmpItemAbbrDeprecated = { fg = palette.darker, strikethrough = true },
+		CmpItemAbbrDeprecated = { fg = palette.dark, strikethrough = true },
 		CmpItemKind = { fg = palette.light_blue },
-		CmpItemMenu = { fg = palette.light },
+		CmpItemMenu = { fg = palette.dark },
 		CmpItemAbbrMatch = { fg = palette.light, bold = true },
-		CmpItemAbbrMatchFuzzy = { fg = palette.light, bold = true },
+		CmpItemAbbrMatchFuzzy = { fg = palette.light_blue, bold = true },
 
 		-- kind support
 		CmpItemKindSnippet = { fg = palette.purple },
