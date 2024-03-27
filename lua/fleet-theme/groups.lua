@@ -105,6 +105,9 @@ function M.setup()
         Structure      = { link = "Type" }, --  struct, union, enum, etc.
         Typedef        = { link = "Type" }, --  A typedef
 
+        Hlargs         = { fg = palette.orange },
+        ["@HlargsNamedParams"] = { fg = palette.light_cyan },
+
         Special        = { fg = palette.light }, -- (preferred) any special symbol
         SpecialChar    = { fg = palette.yellow }, --  special character in a constant
         -- Tag            = { }, --    you can use CTRL-] on this
@@ -123,10 +126,10 @@ function M.setup()
 
         Todo           = { bg = palette.focus, fg = palette.light, bold = true }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
-        DiagnosticError            = { bg = palette.error_bg, fg = palette.red_error }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticWarn             = { bg = palette.warning_bg, fg = palette.orange_accent }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticInfo             = { bg = palette.info_bg, fg = palette.light }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticHint             = { bg = palette.hint_bg, fg = palette.blue }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticError            = { fg = palette.red_error }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticWarn             = { fg = palette.orange_accent }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticInfo             = { fg = palette.light }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticHint             = { fg = palette.blue }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
         -- DiagnosticVirtualTextError = { }, -- Used for "Error" diagnostic virtual text.
         -- DiagnosticVirtualTextWarn  = { }, -- Used for "Warn" diagnostic virtual text.
         -- DiagnosticVirtualTextInfo  = { }, -- Used for "Info" diagnostic virtual text.
@@ -154,21 +157,26 @@ function M.setup()
         -- ["@constant"]           = { }, -- Constants identifiers. These might not be semantically constant. E.g. uppercase variables in Python.
         ["@constant.builtin"]       = { link = "Type" }, -- Built-in constant values: `nil` in Lua.
         -- ["@constant.macro"]         = { }, -- Constants defined by macros: `NULL` in C.
-        ["@constructor"]        = { fg = palette.yellow }, -- Constructor calls and definitions: `= {}` in Lua, and Java constructors.
+        ["@constructor"]        = { fg = palette.light_blue }, -- Constructor calls and definitions: `= {}` in Lua, and Java constructors.
         -- ["@error"]              = { }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
         ["@exception"]          = { fg = palette.purple }, -- Exception related keywords: `try`, `except`, `finally` in Python.
         -- ["@field"]              = { }, -- Object and struct fields.
         -- ["@float"]              = { }, -- Floating-point number literals.
-        ["@function"]           = { link = "Function" }, -- Function calls and definitions.
+        ["@function"]           = { fg = palette.lightest, bold = true }, -- Function calls and definitions.
+        ["@function.call"]           = { link = "Function" }, -- Function calls and definitions.
         ["@function.builtin"]        = { fg = palette.green }, -- Built-in functions: `print` in Lua.
         ["@function.macro"]          = { fg = palette.green }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
         -- ["@include"]            = { }, -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
         ["@keyword"]            = { fg = palette.cyan }, -- Keywords that don't fit into other categories.
+        ["@keyword.import"]     = { link = "@namespace" },
         -- ["@keyword.function"]    = { }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
         -- ["@keyword.operator"]    = { }, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
         -- ["@keyword.return"]      = { }, -- Keywords like `return` and `yield`.
         ["@label"]              = { fg = palette.yellow }, -- GOTO labels: `label:` in C, and `::label::` in Lua.
-        -- ["@method"]             = { }, -- Method calls and definitions.
+        -- ["@method"]             = { link = "@function" }, -- Method calls and definitions.
+        -- ["@method.call"]        = { link = "@function.call" }, -- Function calls and definitions.
+        ["@function.method"]             = { link = "@function" }, -- Method calls and definitions.
+        ["@function.method.call"]        = { link = "@function.call" }, -- Function calls and definitions.
         ["@namespace"]          = { fg = palette.green }, -- Identifiers referring to modules and namespaces.
         -- ["@none"]               = { }, -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
         -- ["@number"]             = { }, -- Numeric literals that don't fit into other categories.
@@ -204,7 +212,7 @@ function M.setup()
         -- ["@warning"]            = { }, -- Text representation of a warning note.
         ["@danger"]             = { fg = palette.red_error }, -- Text representation of a danger note.
         ["@type"]               = { fg = palette.light_blue }, -- Type (and class) definitions and annotations.
-        ["@type_builtin"]        = { fg = palette.cyan }, -- Built-in types: `i32` in Rust.
+        ["@type.builtin"]        = { fg = palette.cyan }, -- Built-in types: `i32` in Rust.
         ["@variable"]           = { fg = palette.light }, -- Variable names that don't fit into other categories.
         -- ["@variable.builtin"]    = { Identifier }, -- Variable names defined by the language: `this` or `self` in Javascript.
 
@@ -212,16 +220,19 @@ function M.setup()
         -- other LSP clients may use these groups, or use their own. Consult your
         -- LSP client's documentation.
 
+        -- ["@lsp.type.keyword"] = { fg = palette.red },
+        ["@lsp.type.selfKeyword"] = { fg = palette.red },
         ["@lsp.type.class"] = { link = "@constructor" },
         ["@lsp.type.comment"] = {}, -- do not overwrite comments
         ["@lsp.type.decorator"] = { link = "@parameter" },
         ["@lsp.type.enum"] = { link = "@type" },
         ["@lsp.type.enumMember"] = { link = "@constant" },
-        ["@lsp.type.function"] = { link = "@function" },
-        ["@lsp.type.interface"] = { link = "@keyword" },
+        ["@lsp.type.function"] = {},
+        ["@lsp.type.interface"] = { link = "@type" },
         ["@lsp.type.macro"] = { link = "@macro" },
-        ["@lsp.type.method"] = { link = "@method" },
-        ["@lsp.type.namespace"] = { link = "@namespace" },
+        ["@lsp.type.method"] = {},
+        ["@lsp.type.namespace"] = {},
+        ["@lsp.mod.crateRoot"] = { link = "@type" },
         ["@lsp.type.parameter"] = { link = "@parameter" },
         ["@lsp.type.property"] = { link = "@property" },
         ["@lsp.type.struct"] = { link = "@constructor" },
@@ -238,6 +249,14 @@ function M.setup()
         TSRainbowGreen = { fg = palette.green },
         TSRainbowViolet = { fg = palette.purple },
         TSRainbowCyan = { fg = palette.cyan },
+
+        Sneak = { fg = palette.background, bg = palette.pink },
+
+        TroubleCount = { fg = palette.blue, bg = palette.selection },
+
+        IlluminatedWordText = { bg  = palette.darker },
+        IlluminatedWordRead = { bg  = palette.darker },
+        IlluminatedWordWrite = { bg  = palette.darker },
     }
 
     for group, hl in pairs(config.overrides) do
