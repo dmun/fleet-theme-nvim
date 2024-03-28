@@ -166,6 +166,7 @@ function M.setup()
         -- ["@field"]              = { }, -- Object and struct fields.
         -- ["@float"]              = { }, -- Floating-point number literals.
         ["@function"]           = { fg = palette.lightest, bold = true }, -- Function calls and definitions.
+        ["@function.latex"]     = { link = "Function" }, -- Function calls and definitions.
         ["@function.call"]           = { link = "Function" }, -- Function calls and definitions.
         ["@function.builtin"]        = { fg = palette.green }, -- Built-in functions: `print` in Lua.
         ["@function.macro"]          = { fg = palette.green }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
