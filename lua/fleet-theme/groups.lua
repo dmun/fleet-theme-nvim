@@ -41,7 +41,10 @@ function M.setup()
         -- MsgSeparator = { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
         -- MoreMsg      = { }, -- |more-prompt|
         NonText      = { link = "Comment" }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-        -- NormalFloat  = { }, -- Normal text in floating windows.
+        NormalFloat  = { bg = palette.darkest }, -- Normal text in floating windows.
+        FloatBorder = { link = "Comment" },
+        NormalBorder = { link = "Comment" }, -- Normal text in floating windows.
+        LspInlayHint = { fg = palette.light_gray },
         -- NormalNC     = { }, -- normal text in non-current windows
         Pmenu        = { bg = palette.darker, fg = palette.light }, -- Popup menu: normal item.
         PmenuSel     = { bg = palette.selection, fg = "none", bold = true }, -- Popup menu: selected item.
