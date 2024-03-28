@@ -297,6 +297,8 @@ function M.setup()
 		CmpItemKindOperator = { fg = palette.light_blue },
 		CmpItemKindTypeParameter = { fg = palette.light_cyan },
 		CmpItemKindCopilot = { fg = palette.cyan },
+
+        SagaNormal = { link = "Normal" },
     }
 
     for group, hl in pairs(config.overrides) do
